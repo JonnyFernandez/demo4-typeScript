@@ -1,19 +1,27 @@
-import { envs } from "./config/plugins/envs.plugin";
-// import { MongoDatabase } from "./data/mongo"
-import { MongoDatabase } from "./data/mongoFile";
-import { UserModel } from "./data/mongoFile/models/user.model";
+import {sequelize, User,syncDatabase} from "./data/postgresFile/database";
+import express  from "express";
+import route from "./routes/route";
 
 
-(async()=>{
-    await MongoDatabase.connect({mongoUrl: envs.MONGO_URL, dbName: envs.MONGO_DB_NAME})
-   
-    // await UserModel.create({
-    //     name:'pepe',
-    //     password:123456,
-    //     type: 'admin',
-    //     phone: 2215047727
-    // })
+const server = express();
 
-  
 
-})();
+const PORT = process.env.PORT || 3001;
+
+server.use(express.json());
+
+
+server.use("/api", route);
+
+
+
+
+
+syncDatabase().then(() => {
+    server.listen(PORT, () => {
+        console.log(`🚀 Servidor corriendo en puerto ${PORT}`);
+    });
+});
+
+
+

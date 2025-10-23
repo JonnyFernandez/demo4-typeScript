@@ -184,10 +184,31 @@ volumes:
   mongo-data:
 ```
 
-- Nota:
-  apagar postgres local cuando uso docker
+- Nota Apagar:
+  desde cmd admin Apagar postgres local cuando uso docker
 
 ```
-net stop postgresql-x64-15
+net stop postgresql-x64-16
+
+```
+
+- Nota Iniciar:
+  desde cmd admin Iniciar postgres local cuando uso docker
+
+```
+net start postgresql-x64-16
+
+```
+
+## Comando necesarios para operar con Sequelize y typeScripts:
+
+```
+# Instalar sequelize y el CLI
+npm install sequelize sequelize-typescript
+npm install --save-dev @types/sequelize typescript ts-node
+npm install pg pg-hstore # Para PostgreSQL
+
+#Si querés usar el CLI de Sequelize (útil para migraciones):
+npm install --save-dev sequelize-cli
 
 ```
