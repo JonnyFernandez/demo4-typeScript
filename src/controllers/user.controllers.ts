@@ -8,6 +8,7 @@ interface user{
 
 
 export const createUser=async(user: user)=>{
+    if(!user.password) throw new Error('Ponde pass')
     try {
         const aux = await User.create({name:user.name, password: user.password})
         return aux  
